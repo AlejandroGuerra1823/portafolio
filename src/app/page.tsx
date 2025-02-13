@@ -33,9 +33,9 @@ export default function Home() {
 
 
 
-      <div style={{ display: 'flex', flexWrap: 'wrap', marginInline: 0, alignItems: 'center', justifyContent: 'center', marginBottom: 80 }}>
+      <div style={{ display: 'flex', flexWrap: 'wrap', marginInline: 0, alignItems: 'center', justifyContent: 'space-between', marginBottom: 80 }}>
 
-        <div className={styles.imageContainer} style={{ maxHeight: 470, height: 500 }}>
+        {/* <div className={styles.imageContainer} style={{ maxHeight: 470, height: 500 }}>
           <img src="/images/yoMono.jpeg" alt="Descripción de la imagen"
           />
           <div className={styles.overlay}>
@@ -54,10 +54,10 @@ export default function Home() {
             <p className={styles.overlayText}>Aqui te cuento todo mi proceso
               y mas informacion sobre mi para que conozcas mas a fondo</p>
           </div>
-        </div>
+        </div> */}
 
 
-        <div className={styles.imageContainer} style={{ maxHeight: 470, height: 500 }}>
+        {/* <div className={styles.imageContainer} style={{ maxHeight: 470, height: 500 }}>
           <img src="/images/lastone.png" alt="Foticops"
           />
           <div className={styles.overlay}>
@@ -65,50 +65,48 @@ export default function Home() {
             <p className={styles.overlayText}>Aqui te cuento todo mi proceso
               y mas informacion sobre mi para que conozcas mas a fondo</p>
           </div>
-        </div>
+        </div> */}
 
 
       </div>
 
 
-      <div style={{marginBottom: 80, marginInline: 30}}>
-
-        <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignContent: 'center', flexWrap: 'wrap' }}>
-          <div style={{ flex: '50%', maxHeight: 470 }}>
-            <img src="/images/yoMono.jpeg" alt="Descripción de la imagen"
-              style={{ borderRadius: 15, marginInline: 30, marginBlock: 20, width: '60%', minWidth: 230, objectPosition: 'center', objectFit: 'cover' }} />
+      <div className={styles.sobreMiContainer}>
+        <div className={styles.sobreMiContent}>
+          <div className={styles.sobreMiImageContainer}>
+            <img
+              src="/images/yoMono.jpeg"
+              alt="Descripción de la imagen"
+              className={styles.sobreMiImage}
+            />
           </div>
-          <div style={{ flex: '40%', alignContent: 'center' }}>
-            <p style={{ color: '#E40C38', fontSize: 40, fontFamily: 'Montserrat', }}>
-              Sobre mi
-            </p>
-            <p>
-              Desarrollador especializado en el desarrollo movil apasionado y con mucho entusiasnomo para seguir aprendiendo con mas de 3 años de experiencia.
+          <div className={styles.sobreMiTextContainer}>
+            <h2 className={styles.sobreMiTitle}>Sobre mí</h2>
+            <p className={styles.sobreMiDescription}>
+              Desarrollador especializado en el desarrollo móvil, apasionado y con mucho entusiasmo para seguir aprendiendo. Con más de 3 años de experiencia.
             </p>
           </div>
         </div>
 
-
-        <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignContent: 'center', flexWrap: 'wrap', margin: 20 }}>
-          <div style={{ flex: '40%', alignContent: 'center' }}>
-            <p style={{ color: '#E40C38', fontSize: 40, fontFamily: 'Montserrat', }}>
-              Sobre mi
-            </p>
-            <p>
-              Desarrollador especializado en el desarrollo movil apasionado y con mucho entusiasnomo para seguir aprendiendo con mas de 3 años de experiencia.
+        <div className={styles.sobreMiContent}>
+          <div className={styles.sobreMiTextContainer}>
+            <h2 className={styles.sobreMiTitle}>Mis inicios</h2>
+            <p className={styles.sobreMiDescription}>
+              Desarrollador especializado en el desarrollo móvil, apasionado y con mucho entusiasmo para seguir aprendiendo. Con más de 3 años de experiencia.
             </p>
           </div>
-
-          <div style={{ flex: '50%', maxHeight: 470 }}>
-            <img src="/images/yoPelinegro.jpeg" alt="Descripción de la imagen"
-              style={{ borderRadius: 15, marginInline: 30, marginBlock: 20, width: '60%', minWidth: 230, objectPosition: 'center', objectFit: 'cover' }} />
+          <div className={styles.sobreMiImageContainer}>
+            <img
+              src="/images/yoPelinegro.jpeg"
+              alt="Descripción de la imagen"
+              className={styles.sobreMiImage}
+            />
           </div>
-
         </div>
       </div>
 
 
-      <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignContent: 'center', flexWrap: 'wrap', marginTop: 200, marginInline: 30}}>
+      <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignContent: 'center', flexWrap: 'wrap', marginTop: 200, marginInline: 30 }}>
         <p style={{ color: '#E40C38', fontSize: 40, fontFamily: 'Montserrat', alignSelf: 'center' }}>
           Mi experiencia
         </p>
@@ -117,14 +115,14 @@ export default function Home() {
         </p>
       </div>
 
-      <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignContent: 'center', flexWrap: 'wrap', marginTop: 200, marginInline: 30}}>
+      {/* <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignContent: 'center', flexWrap: 'wrap', marginTop: 200, marginInline: 30}}>
         <p style={{ color: '#E40C38', fontSize: 40, fontFamily: 'Montserrat', alignSelf: 'center' }}>
           Mis Proyectos
         </p>
         <p>
           Desarrollador especializado en el desarrollo movil apasionado y con mucho entusiasnomo para seguir aprendiendo con mas de 3 años de experiencia.
         </p>
-      </div>
+      </div> */}
 
     </div>
   );

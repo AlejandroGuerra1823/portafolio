@@ -24,13 +24,22 @@ const Navbar = ({ toggle }: Props) => {
         <Link href="/" style={{ textDecoration: 'none', display: 'flex', flex:'30%'}}>
           <div className={styles.logo}>
             <p style={{ color: '#E40C38',  fontFamily: 'Montserrat', margin: 0, fontSize: 'clamp(0.9rem, 2rem, 3rem)' }}>Alejandro Guerra</p>
-            <p style={{ color: 'white', fontSize: 'clamp(0.4rem, 1.5rem, 2rem)', fontFamily: 'Montserrat', marginTop: 0, marginLeft: 15 }}>Desarrollador móvil y Front-end</p>
+            <p style={{ color: 'white', fontSize: 'clamp(0.4rem, 1.5rem, 2rem)', fontFamily: 'Montserrat', marginTop: 0, marginLeft: 15 }}>Desarrollador móvil</p>
           </div>
         </Link>
 
        <div style={{ display: 'flex', flex: '50%', marginInline: 70, flexDirection: 'row', justifyContent: 'space-between',alignItems: 'center' }}>
           <Link href="/proyects" style={{ fontSize: 20, textDecoration: 'none', color: '#E40C38', fontFamily: 'Montserrat', }}>
-            <p>Proyectos</p>
+            <p>GitHub</p>
+          </Link>
+          <Link href="/proyects" style={{ fontSize: 20, textDecoration: 'none', color: '#E40C38', fontFamily: 'Montserrat', }}>
+            <p>Experiencia</p>
+          </Link>
+
+
+
+       <Link href="/proyects" style={{ fontSize: 20, textDecoration: 'none', color: '#E40C38', fontFamily: 'Montserrat', }}>
+            <p>Habilidades</p>
           </Link>
 
           <Link href="/contact" style={{ fontSize: 20, textDecoration: 'none', color: '#E40C38', fontFamily: 'Montserrat', }}>

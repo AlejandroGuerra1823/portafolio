@@ -49,3 +49,71 @@
     text-align: center;
     margin-inline: 5px;
   }
+
+  .sobreMiContainer {
+    margin: 0 auto;
+    /* Color de fondo suave */
+  }
+  
+  .sobreMiContent {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 40px; /* Espacio entre la imagen y el texto */
+    min-width: 400px;
+    margin: 0 auto;
+  }
+  
+  .sobreMiImageContainer {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .sobreMiImage {
+    border-radius: 15px;
+    width: 80%;
+    max-width: 300px;
+    object-fit: cover;
+  }
+  
+  .sobreMiTextContainer {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .sobreMiTitle {
+    font-size: 40;
+    color: #E40C38;
+    font-family: 'Montserrat';
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .sobreMiDescription {
+    font-size: 18px;
+    
+    line-height: 1.6;
+    text-align: center;
+    max-width: 600px;
+  }
+
+  @media (max-width: 768px) {
+    .sobreMiContent {
+      flex-direction: column; /* Cambia a columna para los dispositivos móviles */
+      align-items: center;  /* Centra el contenido */
+    }
+  
+    .sobreMiImageContainer {
+      margin-bottom: 20px; /* Espacio entre la imagen y el texto */
+    }
+  
+    .sobreMiTextContainer {
+      align-items: center; /* Centra el texto */
+    }
+  }
