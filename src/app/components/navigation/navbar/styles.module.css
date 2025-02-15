@@ -13,9 +13,10 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding-inline: 20px;
+    margin-inline: 40;
     margin-top: 20px;
     margin-bottom: 40px;
+    /* background-color: red; */
   }
   
   .menu li a {
@@ -45,7 +46,7 @@
   }
   
   /* Estilos en pantallas pequeñas (menos de 768px) */
-  @media (max-width: 768px) {
+  @media (max-width: 1100px) {
     .menu {
       display: none;
       flex-direction: column;
