@@ -29,7 +29,7 @@ const Navbar = ({ toggle }: Props) => {
         </Link>
 
        <div style={{ display: 'flex', flex: '50%', flexDirection: 'row', justifyContent: 'space-between',alignItems: 'center' }}>
-          <Link href="/proyects" style={{ fontSize: 20, textDecoration: 'none', color: '#E40C38', fontFamily: 'Montserrat', }}>
+          <Link href="https://github.com/AlejandroGuerra1823" target="_blank" rel="noopener noreferrer" style={{ fontSize: 20, textDecoration: 'none', color: '#E40C38', fontFamily: 'Montserrat', }}>
             <p>GitHub</p>
           </Link>
           <Link href="/proyects" style={{ fontSize: 20, textDecoration: 'none', color: '#E40C38', fontFamily: 'Montserrat', }}>
@@ -38,8 +38,8 @@ const Navbar = ({ toggle }: Props) => {
 
 
 
-       <Link href="/proyects" style={{ fontSize: 20, textDecoration: 'none', color: '#E40C38', fontFamily: 'Montserrat', }}>
-            <p>Habilidades</p>
+        <Link href="../../../../archives/HvAlejandroGuerra.pdf" download='Hv Alejandro Guerra' target="_blank" style={{ fontSize: 20, textDecoration: 'none', color: '#E40C38', fontFamily: 'Montserrat', }}>
+            <p>Mi Hv</p>
           </Link>
 
           <Link href="/contact" style={{ fontSize: 20, textDecoration: 'none', color: '#E40C38', fontFamily: 'Montserrat', }}>
@@ -51,9 +51,7 @@ const Navbar = ({ toggle }: Props) => {
               <Button style={{ width: 90, height: 60, borderRadius: 10 }} variant="bordered">ES - 🇪🇸</Button>
             </DropdownTrigger>
             <DropdownMenu aria-label="Static Actions">
-              <DropdownItem key="new">New file</DropdownItem>
-              <DropdownItem key="copy">Copy link</DropdownItem>
-              <DropdownItem key="edit">Edit file</DropdownItem>
+              <DropdownItem key="new">EN - US</DropdownItem>
             </DropdownMenu>
           </Dropdown> </div> 
       </div>
@@ -62,13 +60,13 @@ const Navbar = ({ toggle }: Props) => {
         <div className={styles.menuToggle} onClick={toggleMenu}>
         <Link href="/" style={{ textDecoration: 'none', display: 'flex', flex:'30%'}}>
           <div className={styles.logo}>
-            <p style={{ color: '#E40C38', fontSize: 28, fontFamily: 'Montserrat', margin: 0 }}>Alejandro Guerra</p>
-            <p style={{ color: 'white', fontSize: 18, fontFamily: 'Montserrat', marginTop: 0, marginLeft: 15 }}>Desarrollador móvil y Front-end</p>
+            <p style={{ color: '#E40C38', fontSize: 'clamp(0.9rem, 2rem, 3rem)', fontFamily: 'Montserrat', margin: 0 }}>Alejandro Guerra</p>
+            <p style={{ color: 'white', fontSize: 'clamp(0.4rem, 1.5rem, 2rem)', fontFamily: 'Montserrat', marginTop: 0}}>Desarrollador móvil</p>
           </div>
         </Link>
-        <span className="bar"></span>
-        <span className="bar"></span>
-        <span className="bar"></span>
+        <span className="bar">assa</span>
+        <span className="bar">sasa</span>
+        <span className="bar">sasa</span>
       </div>
     </nav>
   );

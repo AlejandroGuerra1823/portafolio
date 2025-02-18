@@ -32,8 +32,12 @@
   
   /* Estilos para el botón hamburguesa */
   .menuToggle {
+    flex-direction: row;
+    justify-content: space-between;
+    margin-inline: 40;
+    margin-top: 20px;
+    margin-bottom: 40px;
     display: none;
-    flex-direction: column;
     cursor: pointer;
     gap: 5px;
   }
@@ -46,7 +50,7 @@
   }
   
   /* Estilos en pantallas pequeñas (menos de 768px) */
-  @media (max-width: 1100px) {
+  @media (max-width: 1000px) {
     .menu {
       display: none;
       flex-direction: column;
