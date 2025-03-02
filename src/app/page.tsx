@@ -1,15 +1,13 @@
-"use client";
 import * as React from "react";
-import { NextUIProvider } from "@nextui-org/react";
-import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button } from "@nextui-org/react";
-import Image from "next/image";
+import { Link } from 'react-scroll';
 import styles from './styles.module.css'
+import Navigation from "./components/navigation";
 
 export default function Home() {
   return (
 
     <div style={{ padding: 40 }}>
-      <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', marginBottom: 45 }}>
+      <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', marginBottom: 45, marginTop:50}}>
         <div style={{ display: 'flex', flex: '1 1 50%', minWidth: 280, paddingRight: 20 }}>
           <p style={{ fontFamily: 'Montserrat', fontSize: 'clamp(1.2rem, 5vw, 1.6rem)' }}>
             Bienvenido a mi portafolio! <br />
@@ -120,54 +118,53 @@ export default function Home() {
         </div>
       </div>
 
-
-      <div style={{ display: 'flex', flexDirection: 'column', flexWrap: 'wrap', marginTop: 100, marginInline: 30 }}>
-        <p style={{ color: '#E40C38', fontSize: 40, fontFamily: 'Montserrat', marginBottom: 0 }}>
-          Mi experiencia
-        </p>
-        <div style={{ marginInline: 40, marginTop: 0, display: 'flex', flexDirection: 'column', }}>
-          <p style={{ fontSize: 30, fontFamily: 'Montserrat', marginBottom: 10 }}>
-            <span style={{ fontSize: 25, color: '#E40C38', }}> Desarrollador móvil</span>
-            <br />
-            Q10 / Abril 2024 ↦ Actual
+        <div id='MiExperiencia' style={{ display: 'flex', flexDirection: 'column', flexWrap: 'wrap', marginTop: 100, marginInline: 30 }}>
+          <p style={{ color: '#E40C38', fontSize: 40, fontFamily: 'Montserrat', marginBottom: 0 }}>
+            Mi experiencia
           </p>
-          <p style={{ marginTop: 10, paddingLeft: 30, fontSize: 20, fontFamily: 'Montserrat' }}>
-            - Creación y despliegue de aplicaciones móviles.<br />
-            - Implementación de tecnologías emergentes y nuevas funcionalidades.<br />
-            - Definición e implementación de nuevas arquitecturas para aplicaciones móviles.<br />
-            - Corrección de incidentes.<br />
-            - Soporte y mantenimiento de aplicativos.<br />
-          </p>
+          <div style={{ marginInline: 40, marginTop: 0, display: 'flex', flexDirection: 'column', }}>
+            <p style={{ fontSize: 30, fontFamily: 'Montserrat', marginBottom: 10 }}>
+              <span style={{ fontSize: 25, color: '#E40C38', }}> Desarrollador móvil</span>
+              <br />
+              Q10 / Abril 2024 ↦ Actual
+            </p>
+            <p style={{ marginTop: 10, paddingLeft: 30, fontSize: 20, fontFamily: 'Montserrat' }}>
+              - Creación y despliegue de aplicaciones móviles.<br /><br />
+              - Implementación de tecnologías emergentes y nuevas funcionalidades.<br /><br />
+              - Definición e implementación de nuevas arquitecturas para aplicaciones móviles.<br /><br />
+              - Corrección de incidentes.<br /><br />
+              - Soporte y mantenimiento de aplicativos.<br /><br />
+            </p>
+          </div>
+          <div style={{ marginInline: 40 }}>
+            <p style={{ fontSize: 30, fontFamily: 'Montserrat', marginBottom: 10 }}>
+              <span style={{ fontSize: 25, color: '#E40C38', }}> Desarrollador FrontEnd</span>
+              <br />
+              Emprendi / Septiembre 2023 ↦ Marzo 2024
+            </p>
+            <p style={{ marginTop: 20, paddingLeft: 30, fontSize: 20, fontFamily: 'Montserrat' }}>
+              - Creacion de aplicaciones con Next.js, React, React Native, TailwindCSS, APIs RESTful.<br /><br />
+              - Desarrollar interfaces de usuario intuitivas y responsivas.<br /><br />
+              - Asegurar el delivery de tareas asignadas con calidad y cumplimiento de objetivos.<br /><br />
+              - Integración de APIs RESTful y arquitectura de aplicaciones.<br /><br />
+            </p>
+          </div>
+          <div style={{ marginInline: 40 }}>
+            <p style={{ fontSize: 30, fontFamily: 'Montserrat', marginBottom: 10 }}>
+              <span style={{ fontSize: 25, color: '#E40C38', }}> Desarrollador móvil y tester</span>
+              <br />
+              Q10 / Abril 2021 ↦ Septiembre 2023
+            </p>
+            <p style={{ marginTop: 20, paddingLeft: 30, fontSize: 20, fontFamily: 'Montserrat' }}>
+              - Planificación y ejecución de pruebas de software.<br /><br />
+              - Implementación de tecnologías emergentes y nuevas funcionalidades.<br /><br />
+              - Identificación y reporte de defectos para asegurar calidad del producto.<br /><br />
+              - Colaboración con equipos de desarrollo para garantizar entrega de software funcional y de alta calidad.<br /><br />
+              - Corrección de incidentes.<br /><br />
+              - Soporte y mantenimiento de aplicativos.<br /><br />
+            </p>
+          </div>
         </div>
-        <div style={{ marginInline: 40 }}>
-          <p style={{ fontSize: 30, fontFamily: 'Montserrat', marginBottom: 0 }}>
-            <span style={{ fontSize: 25, color: '#E40C38', }}> Desarrollador FrontEnd</span>
-            <br />
-            Emprendi / Septiembre 2023 ↦ Marzo 2024
-          </p>
-          <p style={{ marginTop: 10, paddingLeft: 30, fontSize: 20, fontFamily: 'Montserrat' }}>
-            - Creacion de aplicaciones con Next.js, React, React Native, TailwindCSS, APIs RESTful.<br />
-            - Desarrollar interfaces de usuario intuitivas y responsivas.<br />
-            - Asegurar el delivery de tareas asignadas con calidad y cumplimiento de objetivos.<br />
-            - Integración de APIs RESTful y arquitectura de aplicaciones.<br />
-          </p>
-        </div>
-        <div style={{ marginInline: 40 }}>
-          <p style={{ fontSize: 30, fontFamily: 'Montserrat', marginBottom: 0 }}>
-            <span style={{ fontSize: 25, color: '#E40C38', }}> Desarrollador móvil y tester</span>
-            <br />
-            Q10 / Abril 2021 ↦ Septiembre 2023
-          </p>
-          <p style={{ marginTop: 10, paddingLeft: 30,fontSize: 20, fontFamily: 'Montserrat' }}>
-            - Planificación y ejecución de pruebas de software.<br />
-            - Implementación de tecnologías emergentes y nuevas funcionalidades.<br />
-            - Identificación y reporte de defectos para asegurar calidad del producto.<br />
-            - Colaboración con equipos de desarrollo para garantizar entrega de software funcional y de alta calidad.<br />
-            - Corrección de incidentes.<br />
-            - Soporte y mantenimiento de aplicativos.<br />
-          </p>
-        </div>
-      </div>
 
       {/* <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignContent: 'center', flexWrap: 'wrap', marginTop: 200, marginInline: 30}}>
         <p style={{ color: '#E40C38', fontSize: 40, fontFamily: 'Montserrat', alignSelf: 'center' }}>

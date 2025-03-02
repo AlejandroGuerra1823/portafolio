@@ -17,7 +17,7 @@ export default function RootLayout({
 }>) {
 
   return (
-    <html lang="en" style={{borderStyle: 'solid', borderColor: 'red', borderWidth: 1}}>
+    <html lang="en">
       <head>
         <link
           href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap"
@@ -26,7 +26,7 @@ export default function RootLayout({
       </head>
       <body style={{ backgroundColor: '#0F0D0D'}}
         className={inter.className}>
-          <Navigation />
+        <Navigation />
           {children}
       </body>
     </html>

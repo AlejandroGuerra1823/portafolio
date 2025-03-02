@@ -9,10 +9,7 @@ const Navigation = () => {
     setIsOpen(!isOpen);
   };
   return (
-    <>
-      {/* <Sidebar isOpen={isOpen} toggle={toggle} /> */}
       <Navbar toggle={toggle} />
-    </>
   );
 };
 
