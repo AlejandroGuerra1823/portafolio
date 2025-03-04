@@ -6,7 +6,7 @@ import Navigation from "./components/navigation";
 export default function Home() {
   return (
 
-    <div style={{ padding: 40 }}>
+    <div style={{ padding: 40, paddingTop: 250 }}>
       <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', marginBottom: 45, marginTop:50}}>
         <div style={{ display: 'flex', flex: '1 1 50%', minWidth: 280, paddingRight: 20 }}>
           <p style={{ fontFamily: 'Montserrat', fontSize: 'clamp(1.2rem, 5vw, 1.6rem)' }}>
