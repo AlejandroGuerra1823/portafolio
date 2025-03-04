@@ -1,7 +1,4 @@
-import * as React from "react";
-import { Link } from 'react-scroll';
-import styles from './styles.module.css'
-import Navigation from "./components/navigation";
+import styles from './styles.module.css';
 
 export default function Home() {
   return (
