@@ -91,7 +91,7 @@ const Navbar = ({ toggle }: Props) => {
             </div>}
 
 
-          <div onClick={toggleMenu} style={{ marginTop: 30, marginLeft: 2 }}>
+          <div onClick={toggleMenu} style={{ marginTop: 30, marginLeft: 2, marginRight: 40 }}>
             {isMenuOpen ? <FaTimes size={30} /> : <FaBars size={30} />} {/* Muestra el ícono según el estado */}
           </div>
         </div>
