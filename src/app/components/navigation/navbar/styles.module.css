@@ -4,6 +4,7 @@
   background: linear-gradient(180deg, rgba(0,0,0,1) 63%, rgba(0,0,0,0.7455357142857143) 82%, rgba(5,5,5,0.30575980392156865) 92%, rgba(133,133,133,0.12368697478991597) 97%, rgba(255,255,255,0.01724439775910369) 80%);
   display: flex;
   align-items: center;
+  justify-content: center;
   position: fixed;
   top: 0;
   width: 100%;
