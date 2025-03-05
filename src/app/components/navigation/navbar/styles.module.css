@@ -3,7 +3,6 @@
   background: rgb(0, 0, 0);
   background: linear-gradient(180deg, rgba(0, 0, 0, 0.7455357142857143) 42%, rgba(0, 0, 0, 0.4234068627450981) 63%, rgba(5, 5, 5, 0.19371498599439774) 78%, rgba(14, 14, 14, 0.08167016806722693) 89%, rgba(255, 255, 255, 0.020045518207282953) 100%);
   display: flex;
-  justify-content: space-between;
   align-items: center;
   position: fixed;
   top: 0;
