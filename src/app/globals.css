@@ -1,46 +1,36 @@
-@font-face{
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
   font-family: 'Montserrat';
   src: url(/fonts/Montserrat-Variable.ttf);
 }
-
-/* * {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-} */
 
 html {
   scroll-behavior: smooth;
 }
 
 :root {
-  --background:  #171717;
-  --foreground: #ffffff;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: #070d18;
+  --foreground: #e6edf5;
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: 'Montserrat';
+  font-family: 'Montserrat', system-ui, sans-serif;
 }
 
-
 ::-webkit-scrollbar {
-  width: 8px; /* Tamaño del scroll */
+  width: 8px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #000; /* Color del thumb (la parte que se mueve) */
+  background-color: #1c2b3f;
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background-color: rgb(20, 19, 19); /* Color de la pista del scroll */
+  background-color: #0a1220;
 }
