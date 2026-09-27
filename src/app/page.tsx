@@ -80,7 +80,7 @@ const COPY = {
       heading: "Building now",
       sub: "Public AI portfolio in progress — shipping in this order:",
       items: [
-        { name: "MCP server — Colombian financial data", desc: "TRM and market rates, usable directly from Claude via the Model Context Protocol.", status: "In progress", tags: ["MCP", "TypeScript"] },
+        { name: "MCP server — Colombian financial data", desc: "Colombia's official TRM (USD/COP) with history, stats and conversions — usable directly from Claude via the Model Context Protocol. 16 unit tests.", status: "Shipped", tags: ["MCP", "TypeScript"], href: "https://github.com/AlejandroGuerra1823/colombia-finance-mcp" },
         { name: "Financial-analysis agent", desc: "Multi-step agent that categorizes transactions and flags anomalies — with a public evals table.", status: "Planned", tags: ["Python", "LangGraph", "Evals"] },
         { name: "RAG over financial documents", desc: "Retrieval service with source citations and retrieval-quality metrics.", status: "Planned", tags: ["FastAPI", "pgvector", "RAG"] },
       ],
@@ -177,7 +177,7 @@ const COPY = {
       heading: "En construcción",
       sub: "Portafolio público de IA en progreso — saliendo en este orden:",
       items: [
-        { name: "Servidor MCP — datos financieros de Colombia", desc: "TRM y tasas de mercado, consultables desde Claude vía Model Context Protocol.", status: "En progreso", tags: ["MCP", "TypeScript"] },
+        { name: "Servidor MCP — datos financieros de Colombia", desc: "La TRM oficial de Colombia (USD/COP) con histórico, estadísticas y conversiones — consultable desde Claude vía Model Context Protocol. 16 tests unitarios.", status: "Publicado", tags: ["MCP", "TypeScript"], href: "https://github.com/AlejandroGuerra1823/colombia-finance-mcp" },
         { name: "Agente de análisis financiero", desc: "Agente multi-paso que categoriza movimientos y detecta anomalías — con tabla de evals pública.", status: "Planeado", tags: ["Python", "LangGraph", "Evals"] },
         { name: "RAG sobre documentos financieros", desc: "Servicio de retrieval con citas de fuentes y métricas de calidad.", status: "Planeado", tags: ["FastAPI", "pgvector", "RAG"] },
       ],
@@ -387,10 +387,18 @@ export default function Home() {
           <div className="grid md:grid-cols-3 gap-5">
             {t.building.items.map((p) => (
               <div key={p.name} className="rounded-2xl bg-[#0c1626] border border-[#1c2b3f] p-6 flex flex-col">
-                <span className={`self-start text-[11px] font-mono px-2.5 py-1 rounded-full mb-3 ${p.status === "In progress" || p.status === "En progreso" ? "bg-teal-400/15 text-teal-300 border border-teal-400/30" : "bg-[#0e1b2e] text-slate-400 border border-[#22334d]"}`}>
-                  {p.status}
+                <span className={`self-start text-[11px] font-mono px-2.5 py-1 rounded-full mb-3 ${p.status === "Shipped" || p.status === "Publicado" || p.status === "In progress" || p.status === "En progreso" ? "bg-teal-400/15 text-teal-300 border border-teal-400/30" : "bg-[#0e1b2e] text-slate-400 border border-[#22334d]"}`}>
+                  {p.status === "Shipped" || p.status === "Publicado" ? `✓ ${p.status}` : p.status}
                 </span>
-                <h3 className="font-semibold text-slate-100 mb-2">{p.name}</h3>
+                <h3 className="font-semibold text-slate-100 mb-2">
+                  {"href" in p && p.href ? (
+                    <a href={p.href} target="_blank" rel="noopener noreferrer" className="hover:text-teal-300 transition-colors underline decoration-[#2a3d59] underline-offset-4">
+                      {p.name}
+                    </a>
+                  ) : (
+                    p.name
+                  )}
+                </h3>
                 <p className="text-sm text-slate-400 leading-relaxed flex-1">{p.desc}</p>
                 <div className="mt-4 flex flex-wrap gap-2">
                   {p.tags.map((tag) => (
