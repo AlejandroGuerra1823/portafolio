@@ -387,7 +387,7 @@ export default function Home() {
           <div className="grid md:grid-cols-3 gap-5">
             {t.building.items.map((p) => (
               <div key={p.name} className="rounded-2xl bg-[#0c1626] border border-[#1c2b3f] p-6 flex flex-col">
-                <span className={`self-start text-[11px] font-mono px-2.5 py-1 rounded-full mb-3 ${p.status === "Shipped" || p.status === "Publicado" || p.status === "In progress" || p.status === "En progreso" ? "bg-teal-400/15 text-teal-300 border border-teal-400/30" : "bg-[#0e1b2e] text-slate-400 border border-[#22334d]"}`}>
+                <span className={`self-start text-[11px] font-mono px-2.5 py-1 rounded-full mb-3 ${p.status === "Shipped" || p.status === "Publicado" ? "bg-teal-400/15 text-teal-300 border border-teal-400/30" : "bg-[#0e1b2e] text-slate-400 border border-[#22334d]"}`}>
                   {p.status === "Shipped" || p.status === "Publicado" ? `✓ ${p.status}` : p.status}
                 </span>
                 <h3 className="font-semibold text-slate-100 mb-2">
