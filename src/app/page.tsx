@@ -81,7 +81,7 @@ const COPY = {
       sub: "Public AI portfolio in progress — shipping in this order:",
       items: [
         { name: "MCP server — Colombian financial data", desc: "Colombia's official TRM (USD/COP) with history, stats and conversions — usable directly from Claude via the Model Context Protocol. 16 unit tests.", status: "Shipped", tags: ["MCP", "TypeScript"], href: "https://github.com/AlejandroGuerra1823/colombia-finance-mcp" },
-        { name: "Financial-analysis agent", desc: "Multi-step agent that categorizes transactions and flags anomalies — with a public evals table.", status: "Planned", tags: ["Python", "LangGraph", "Evals"] },
+        { name: "Financial-analysis agent", desc: "Multi-step LangGraph agent: transaction categorization + hybrid rules/LLM anomaly detection, scored by a public eval suite — 95.8% accuracy, F1 0.89, zero false positives.", status: "Shipped", tags: ["Python", "LangGraph", "Evals"], href: "https://github.com/AlejandroGuerra1823/financial-analysis-agent" },
         { name: "RAG over financial documents", desc: "Retrieval service with source citations and retrieval-quality metrics.", status: "Planned", tags: ["FastAPI", "pgvector", "RAG"] },
       ],
       follow: "Follow along on GitHub",
@@ -178,7 +178,7 @@ const COPY = {
       sub: "Portafolio público de IA en progreso — saliendo en este orden:",
       items: [
         { name: "Servidor MCP — datos financieros de Colombia", desc: "La TRM oficial de Colombia (USD/COP) con histórico, estadísticas y conversiones — consultable desde Claude vía Model Context Protocol. 16 tests unitarios.", status: "Publicado", tags: ["MCP", "TypeScript"], href: "https://github.com/AlejandroGuerra1823/colombia-finance-mcp" },
-        { name: "Agente de análisis financiero", desc: "Agente multi-paso que categoriza movimientos y detecta anomalías — con tabla de evals pública.", status: "Planeado", tags: ["Python", "LangGraph", "Evals"] },
+        { name: "Agente de análisis financiero", desc: "Agente LangGraph multi-paso: categorización de movimientos + detección híbrida de anomalías (reglas + LLM), medido por una suite de evals pública — 95,8% de accuracy, F1 0,89, cero falsos positivos.", status: "Publicado", tags: ["Python", "LangGraph", "Evals"], href: "https://github.com/AlejandroGuerra1823/financial-analysis-agent" },
         { name: "RAG sobre documentos financieros", desc: "Servicio de retrieval con citas de fuentes y métricas de calidad.", status: "Planeado", tags: ["FastAPI", "pgvector", "RAG"] },
       ],
       follow: "Síguelo en GitHub",
