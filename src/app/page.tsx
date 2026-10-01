@@ -14,7 +14,7 @@ type Lang = "en" | "es";
 
 const COPY = {
   en: {
-    nav: { about: "About", experience: "Experience", building: "Building now", certs: "Certifications", contact: "Contact", cv: "Résumé" },
+    nav: { about: "About", experience: "Experience", building: "Building now", certs: "Certifications", contact: "Contact", cv: "Resume" },
     hero: {
       eyebrow: "Manuel Alejandro Guerra Arango · Medellín, Colombia",
       titlePre: "AI",
@@ -22,7 +22,7 @@ const COPY = {
       subtitle: "Agentic Development · Digital Banking · Mobile & Full-Stack",
       lead:
         "I build banking products people use every day — and since 2026, I build them with AI agents. I architected Dilo, a digital banking wallet, from scratch to production, and now I build agentic systems on top of 5+ years of full-stack and mobile engineering.",
-      cta: "Download résumé",
+      cta: "Download resume",
     },
     highlights: [
       { title: "A banking wallet, from scratch", body: "Architecture, standards and CI/CD for Dilo (Banco Atlántida) — from the first commit to production in both app stores." },
