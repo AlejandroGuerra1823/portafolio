@@ -82,7 +82,7 @@ const COPY = {
       items: [
         { name: "MCP server — Colombian financial data", desc: "Colombia's official TRM (USD/COP) with history, stats and conversions — usable directly from Claude via the Model Context Protocol. 16 unit tests.", status: "Shipped", tags: ["MCP", "TypeScript"], href: "https://github.com/AlejandroGuerra1823/colombia-finance-mcp" },
         { name: "Financial-analysis agent", desc: "Multi-step LangGraph agent: transaction categorization + hybrid rules/LLM anomaly detection, scored by a public eval suite — 95.8% accuracy, F1 0.89, zero false positives.", status: "Shipped", tags: ["Python", "LangGraph", "Evals"], href: "https://github.com/AlejandroGuerra1823/financial-analysis-agent" },
-        { name: "RAG over financial documents", desc: "Retrieval service with source citations and retrieval-quality metrics.", status: "Planned", tags: ["FastAPI", "pgvector", "RAG"] },
+        { name: "RAG over financial documents", desc: "FastAPI RAG service over Colombian finance docs: cited answers, pgvector or local index, dual eval suites — Recall@1 90%, MRR 0.925, LLM-judge 5.0/5 with 100% groundedness.", status: "Shipped", tags: ["FastAPI", "pgvector", "RAG"], href: "https://github.com/AlejandroGuerra1823/financial-docs-rag" },
       ],
       follow: "Follow along on GitHub",
     },
@@ -179,7 +179,7 @@ const COPY = {
       items: [
         { name: "Servidor MCP — datos financieros de Colombia", desc: "La TRM oficial de Colombia (USD/COP) con histórico, estadísticas y conversiones — consultable desde Claude vía Model Context Protocol. 16 tests unitarios.", status: "Publicado", tags: ["MCP", "TypeScript"], href: "https://github.com/AlejandroGuerra1823/colombia-finance-mcp" },
         { name: "Agente de análisis financiero", desc: "Agente LangGraph multi-paso: categorización de movimientos + detección híbrida de anomalías (reglas + LLM), medido por una suite de evals pública — 95,8% de accuracy, F1 0,89, cero falsos positivos.", status: "Publicado", tags: ["Python", "LangGraph", "Evals"], href: "https://github.com/AlejandroGuerra1823/financial-analysis-agent" },
-        { name: "RAG sobre documentos financieros", desc: "Servicio de retrieval con citas de fuentes y métricas de calidad.", status: "Planeado", tags: ["FastAPI", "pgvector", "RAG"] },
+        { name: "RAG sobre documentos financieros", desc: "Servicio RAG en FastAPI sobre docs financieros colombianos: respuestas con citas, pgvector o índice local, doble suite de evals — Recall@1 90%, MRR 0,925, juez LLM 5,0/5 con 100% de groundedness.", status: "Publicado", tags: ["FastAPI", "pgvector", "RAG"], href: "https://github.com/AlejandroGuerra1823/financial-docs-rag" },
       ],
       follow: "Síguelo en GitHub",
     },
@@ -387,17 +387,13 @@ export default function Home() {
           <div className="grid md:grid-cols-3 gap-5">
             {t.building.items.map((p) => (
               <div key={p.name} className="rounded-2xl bg-[#0c1626] border border-[#1c2b3f] p-6 flex flex-col">
-                <span className={`self-start text-[11px] font-mono px-2.5 py-1 rounded-full mb-3 ${p.status === "Shipped" || p.status === "Publicado" ? "bg-teal-400/15 text-teal-300 border border-teal-400/30" : "bg-[#0e1b2e] text-slate-400 border border-[#22334d]"}`}>
-                  {p.status === "Shipped" || p.status === "Publicado" ? `✓ ${p.status}` : p.status}
+                <span className="self-start text-[11px] font-mono px-2.5 py-1 rounded-full mb-3 bg-teal-400/15 text-teal-300 border border-teal-400/30">
+                  ✓ {p.status}
                 </span>
                 <h3 className="font-semibold text-slate-100 mb-2">
-                  {"href" in p && p.href ? (
-                    <a href={p.href} target="_blank" rel="noopener noreferrer" className="hover:text-teal-300 transition-colors underline decoration-[#2a3d59] underline-offset-4">
-                      {p.name}
-                    </a>
-                  ) : (
-                    p.name
-                  )}
+                  <a href={p.href} target="_blank" rel="noopener noreferrer" className="hover:text-teal-300 transition-colors underline decoration-[#2a3d59] underline-offset-4">
+                    {p.name}
+                  </a>
                 </h3>
                 <p className="text-sm text-slate-400 leading-relaxed flex-1">{p.desc}</p>
                 <div className="mt-4 flex flex-wrap gap-2">
