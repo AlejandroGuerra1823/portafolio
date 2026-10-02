@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import dynamic from "next/dynamic";
+import { useEffect, useState } from "react";
 import {
   FaGithub,
   FaLinkedin,
@@ -10,11 +11,49 @@ import {
   FaTimes,
 } from "react-icons/fa";
 
+import AgentTerminal, { type TermLine } from "./components/AgentTerminal";
+import { Reveal, SpotlightCard } from "./components/motion";
+
+const NodeField = dynamic(() => import("./components/NodeField"), { ssr: false });
+
 type Lang = "en" | "es";
+
+const TERMINAL: Record<Lang, TermLine[]> = {
+  en: [
+    { kind: "cmd", text: 'agent.run("introduce --visitor")' },
+    { kind: "step", text: "▸ planning… 3 tool calls queued" },
+    { kind: "step", text: "▸ get_profile()" },
+    { kind: "out", text: "  AI Engineer · Senior Full-Stack & Mobile — Medellín, CO" },
+    { kind: "out", text: "  Ships banking software; since Feb 2026, ships it with AI agents" },
+    { kind: "step", text: '▸ get_experience("dilo")' },
+    { kind: "out", text: "  Architected Dilo — digital banking wallet, zero → production" },
+    { kind: "out", text: "  Team scaled 5 → 2, delivery on pace (Claude Code · MCP)" },
+    { kind: "step", text: "▸ list_projects()" },
+    { kind: "out", text: "  ✓ colombia-finance-mcp       TypeScript · MCP server" },
+    { kind: "out", text: "  ✓ financial-analysis-agent   Python · LangGraph · F1 0.89" },
+    { kind: "out", text: "  ✓ financial-docs-rag         FastAPI · pgvector · judge 5.0/5" },
+    { kind: "ok", text: "✔ done — 3 tools · scroll to explore ↓" },
+  ],
+  es: [
+    { kind: "cmd", text: 'agente.run("preséntame --visitante")' },
+    { kind: "step", text: "▸ planeando… 3 tool calls en cola" },
+    { kind: "step", text: "▸ get_perfil()" },
+    { kind: "out", text: "  AI Engineer · Senior Full-Stack y Móvil — Medellín, CO" },
+    { kind: "out", text: "  Construye software bancario; desde feb 2026, con agentes de IA" },
+    { kind: "step", text: '▸ get_experiencia("dilo")' },
+    { kind: "out", text: "  Arquitectura de Dilo — billetera digital, de cero → producción" },
+    { kind: "out", text: "  Equipo 5 → 2 manteniendo el ritmo (Claude Code · MCP)" },
+    { kind: "step", text: "▸ listar_proyectos()" },
+    { kind: "out", text: "  ✓ colombia-finance-mcp       TypeScript · servidor MCP" },
+    { kind: "out", text: "  ✓ financial-analysis-agent   Python · LangGraph · F1 0,89" },
+    { kind: "out", text: "  ✓ financial-docs-rag         FastAPI · pgvector · juez 5,0/5" },
+    { kind: "ok", text: "✔ listo — 3 tools · haz scroll para explorar ↓" },
+  ],
+};
 
 const COPY = {
   en: {
-    nav: { about: "About", experience: "Experience", building: "Building now", certs: "Certifications", contact: "Contact", cv: "Resume" },
+    nav: { about: "About", experience: "Experience", building: "Projects", certs: "Certifications", contact: "Contact", cv: "Resume" },
     hero: {
       eyebrow: "Manuel Alejandro Guerra Arango · Medellín, Colombia",
       titlePre: "AI",
@@ -23,6 +62,7 @@ const COPY = {
       lead:
         "I build banking products people use every day — and since 2026, I build them with AI agents. I architected Dilo, a digital banking wallet, from scratch to production, and now I build agentic systems on top of 5+ years of full-stack and mobile engineering.",
       cta: "Download resume",
+      terminalTitle: "agent@alejo-guerra — zsh",
     },
     highlights: [
       { title: "A banking wallet, from scratch", body: "Architecture, standards and CI/CD for Dilo (Banco Atlántida) — from the first commit to production in both app stores." },
@@ -77,8 +117,8 @@ const COPY = {
       ],
     },
     building: {
-      heading: "Building now",
-      sub: "Public AI portfolio in progress — shipping in this order:",
+      heading: "AI portfolio — shipped",
+      sub: "Three public projects covering the applied-AI core: MCP, agents and RAG — each with tests and published evals.",
       items: [
         { name: "MCP server — Colombian financial data", desc: "Colombia's official TRM (USD/COP) with history, stats and conversions — usable directly from Claude via the Model Context Protocol. 16 unit tests.", status: "Shipped", tags: ["MCP", "TypeScript"], href: "https://github.com/AlejandroGuerra1823/colombia-finance-mcp" },
         { name: "Financial-analysis agent", desc: "Multi-step LangGraph agent: transaction categorization + hybrid rules/LLM anomaly detection, scored by a public eval suite — 95.8% accuracy, F1 0.89, zero false positives.", status: "Shipped", tags: ["Python", "LangGraph", "Evals"], href: "https://github.com/AlejandroGuerra1823/financial-analysis-agent" },
@@ -111,7 +151,7 @@ const COPY = {
     footer: "Built with Next.js — shipped with AI agents.",
   },
   es: {
-    nav: { about: "Sobre mí", experience: "Experiencia", building: "En construcción", certs: "Certificaciones", contact: "Contacto", cv: "Hoja de vida" },
+    nav: { about: "Sobre mí", experience: "Experiencia", building: "Proyectos", certs: "Certificaciones", contact: "Contacto", cv: "Hoja de vida" },
     hero: {
       eyebrow: "Manuel Alejandro Guerra Arango · Medellín, Colombia",
       titlePre: "AI",
@@ -120,6 +160,7 @@ const COPY = {
       lead:
         "Construyo productos bancarios que la gente usa todos los días — y desde 2026, los construyo con agentes de IA. Diseñé la arquitectura de Dilo, una billetera digital bancaria, desde cero hasta producción, y hoy construyo sistemas agénticos sobre más de 5 años de ingeniería full-stack y móvil.",
       cta: "Descargar hoja de vida",
+      terminalTitle: "agente@alejo-guerra — zsh",
     },
     highlights: [
       { title: "Una billetera bancaria, desde cero", body: "Arquitectura, estándares y CI/CD de Dilo (Banco Atlántida) — del primer commit a producción en ambas tiendas." },
@@ -174,8 +215,8 @@ const COPY = {
       ],
     },
     building: {
-      heading: "En construcción",
-      sub: "Portafolio público de IA en progreso — saliendo en este orden:",
+      heading: "Portafolio de IA — publicado",
+      sub: "Tres proyectos públicos cubriendo el núcleo de la IA aplicada: MCP, agentes y RAG — cada uno con tests y evals publicados.",
       items: [
         { name: "Servidor MCP — datos financieros de Colombia", desc: "La TRM oficial de Colombia (USD/COP) con histórico, estadísticas y conversiones — consultable desde Claude vía Model Context Protocol. 16 tests unitarios.", status: "Publicado", tags: ["MCP", "TypeScript"], href: "https://github.com/AlejandroGuerra1823/colombia-finance-mcp" },
         { name: "Agente de análisis financiero", desc: "Agente LangGraph multi-paso: categorización de movimientos + detección híbrida de anomalías (reglas + LLM), medido por una suite de evals pública — 95,8% de accuracy, F1 0,89, cero falsos positivos.", status: "Publicado", tags: ["Python", "LangGraph", "Evals"], href: "https://github.com/AlejandroGuerra1823/financial-analysis-agent" },
@@ -230,7 +271,14 @@ function SectionTitle({ children }: { children: React.ReactNode }) {
 export default function Home() {
   const [lang, setLang] = useState<Lang>("en");
   const [menuOpen, setMenuOpen] = useState(false);
+  const [show3d, setShow3d] = useState(false);
   const t = COPY[lang];
+
+  useEffect(() => {
+    const wide = window.matchMedia("(min-width: 768px)").matches;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    setShow3d(wide && !reduced);
+  }, []);
 
   const navItems = [
     { label: t.nav.about, href: "#about" },
@@ -242,6 +290,12 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-[#070d18] text-slate-200">
+      {/* Aurora backdrop */}
+      <div aria-hidden>
+        <div className="aurora-blob w-[560px] h-[560px] -top-40 -left-40 bg-teal-500/50" />
+        <div className="aurora-blob w-[480px] h-[480px] top-1/3 -right-48 bg-cyan-700/40" style={{ animationDelay: "-9s" }} />
+      </div>
+
       {/* Navbar */}
       <nav className="fixed top-0 inset-x-0 z-50 backdrop-blur bg-[#070d18]/85 border-b border-[#16233a]">
         <div className="max-w-6xl mx-auto px-5 h-16 flex items-center justify-between">
@@ -299,165 +353,213 @@ export default function Home() {
         )}
       </nav>
 
-      <main id="top" className="max-w-6xl mx-auto px-5">
+      <main id="top" className="relative z-10 max-w-6xl mx-auto px-5">
         {/* Hero */}
-        <section className="pt-32 pb-16 md:pt-40 md:pb-24">
-          <p className="text-xs md:text-sm tracking-widest uppercase text-slate-400 mb-4">{t.hero.eyebrow}</p>
-          <h1 className="text-5xl md:text-7xl font-bold text-slate-50">
-            <span className="text-teal-300">{t.hero.titlePre}</span> {t.hero.titlePost}
-          </h1>
-          <p className="mt-4 text-lg md:text-xl text-slate-300">{t.hero.subtitle}</p>
-          <p className="mt-6 max-w-3xl text-slate-300/90 leading-relaxed">{t.hero.lead}</p>
+        <section className="relative pt-28 pb-16 md:pt-36 md:pb-20">
+          {show3d && (
+            <div className="absolute inset-0 -z-10 opacity-60" aria-hidden>
+              <NodeField />
+            </div>
+          )}
+          <div className="grid lg:grid-cols-2 gap-10 items-center">
+            <div>
+              <Reveal>
+                <p className="text-xs md:text-sm tracking-widest uppercase text-slate-400 mb-4">{t.hero.eyebrow}</p>
+              </Reveal>
+              <Reveal delay={0.08}>
+                <h1 className="text-5xl md:text-7xl font-bold text-slate-50">
+                  <span className="text-teal-300">{t.hero.titlePre}</span> {t.hero.titlePost}
+                </h1>
+              </Reveal>
+              <Reveal delay={0.16}>
+                <p className="mt-4 text-lg md:text-xl text-slate-300">{t.hero.subtitle}</p>
+              </Reveal>
+              <Reveal delay={0.24}>
+                <p className="mt-6 max-w-xl text-slate-300/90 leading-relaxed">{t.hero.lead}</p>
+              </Reveal>
+              <Reveal delay={0.32}>
+                <div className="mt-8 flex flex-wrap items-center gap-3">
+                  <a href={cvPath(lang)} download className="px-5 py-2.5 rounded-xl bg-teal-400 text-[#062220] font-semibold hover:bg-teal-300 transition-colors flex items-center gap-2">
+                    <FaDownload /> {t.hero.cta}
+                  </a>
+                  <a href={LINKS.github} target="_blank" rel="noopener noreferrer" className="px-5 py-2.5 rounded-xl border border-[#2a3d59] hover:border-teal-400/60 transition-colors flex items-center gap-2">
+                    <FaGithub /> GitHub
+                  </a>
+                  <a href={LINKS.linkedin} target="_blank" rel="noopener noreferrer" className="px-5 py-2.5 rounded-xl border border-[#2a3d59] hover:border-teal-400/60 transition-colors flex items-center gap-2">
+                    <FaLinkedin /> LinkedIn
+                  </a>
+                </div>
+              </Reveal>
+            </div>
 
-          <div className="mt-8 flex flex-wrap items-center gap-3">
-            <a href={cvPath(lang)} download className="px-5 py-2.5 rounded-xl bg-teal-400 text-[#062220] font-semibold hover:bg-teal-300 transition-colors flex items-center gap-2">
-              <FaDownload /> {t.hero.cta}
-            </a>
-            <a href={LINKS.github} target="_blank" rel="noopener noreferrer" className="px-5 py-2.5 rounded-xl border border-[#2a3d59] hover:border-teal-400/60 transition-colors flex items-center gap-2">
-              <FaGithub /> GitHub
-            </a>
-            <a href={LINKS.linkedin} target="_blank" rel="noopener noreferrer" className="px-5 py-2.5 rounded-xl border border-[#2a3d59] hover:border-teal-400/60 transition-colors flex items-center gap-2">
-              <FaLinkedin /> LinkedIn
-            </a>
+            <Reveal delay={0.2}>
+              <AgentTerminal key={lang} lines={[...TERMINAL[lang]]} title={t.hero.terminalTitle} />
+            </Reveal>
           </div>
-
-          <p className="mt-8 font-mono text-sm text-teal-300/80">
-            <span className="text-slate-500">$</span> github.com/AlejandroGuerra1823
-          </p>
         </section>
 
         {/* Highlights */}
         <section className="pb-20 grid md:grid-cols-3 gap-5">
-          {t.highlights.map((h) => (
-            <div key={h.title} className="rounded-2xl bg-[#0c1626] border border-[#1c2b3f] p-6 hover:border-teal-400/40 transition-colors">
-              <h3 className="font-semibold text-slate-100 mb-2">{h.title}</h3>
-              <p className="text-sm text-slate-400 leading-relaxed">{h.body}</p>
-            </div>
+          {t.highlights.map((h, index) => (
+            <Reveal key={h.title} delay={index * 0.08}>
+              <SpotlightCard className="p-6 h-full">
+                <h3 className="font-semibold text-slate-100 mb-2">{h.title}</h3>
+                <p className="text-sm text-slate-400 leading-relaxed">{h.body}</p>
+              </SpotlightCard>
+            </Reveal>
           ))}
         </section>
 
         {/* Case study */}
         <section id="about" className="pb-20 scroll-mt-24">
-          <SectionTitle>{t.caseStudy.heading}</SectionTitle>
+          <Reveal>
+            <SectionTitle>{t.caseStudy.heading}</SectionTitle>
+          </Reveal>
           <div className="grid md:grid-cols-3 gap-5">
-            {[t.caseStudy.problem, t.caseStudy.solution, t.caseStudy.outcome].map((block, i) => (
-              <div key={block.title} className="rounded-2xl bg-[#0c1626] border border-[#1c2b3f] p-6">
-                <p className="font-mono text-xs text-teal-300 mb-2">0{i + 1}</p>
-                <h3 className="font-semibold text-slate-100 mb-2">{block.title}</h3>
-                <p className="text-sm text-slate-400 leading-relaxed">{block.body}</p>
-              </div>
+            {[t.caseStudy.problem, t.caseStudy.solution, t.caseStudy.outcome].map((block, index) => (
+              <Reveal key={block.title} delay={index * 0.08}>
+                <SpotlightCard className="p-6 h-full">
+                  <p className="font-mono text-xs text-teal-300 mb-2">0{index + 1}</p>
+                  <h3 className="font-semibold text-slate-100 mb-2">{block.title}</h3>
+                  <p className="text-sm text-slate-400 leading-relaxed">{block.body}</p>
+                </SpotlightCard>
+              </Reveal>
             ))}
           </div>
-          <div className="mt-5 flex flex-wrap gap-2">
-            {t.caseStudy.stack.map((s) => (
-              <span key={s} className="text-xs font-mono px-3 py-1.5 rounded-full bg-[#0e1b2e] border border-[#22334d] text-slate-300">
-                {s}
-              </span>
-            ))}
-          </div>
+          <Reveal delay={0.1}>
+            <div className="mt-5 flex flex-wrap gap-2">
+              {t.caseStudy.stack.map((s) => (
+                <span key={s} className="text-xs font-mono px-3 py-1.5 rounded-full bg-[#0e1b2e] border border-[#22334d] text-slate-300">
+                  {s}
+                </span>
+              ))}
+            </div>
+          </Reveal>
         </section>
 
         {/* Experience */}
         <section id="experience" className="pb-20 scroll-mt-24">
-          <SectionTitle>{t.experience.heading}</SectionTitle>
+          <Reveal>
+            <SectionTitle>{t.experience.heading}</SectionTitle>
+          </Reveal>
           <div className="space-y-8 border-l border-[#1c2b3f] pl-6 md:pl-8">
             {t.experience.jobs.map((job) => (
-              <div key={job.title + job.period} className="relative">
-                <span className="absolute -left-[31px] md:-left-[39px] top-1.5 h-3 w-3 rounded-full bg-teal-400" />
-                <h3 className="font-semibold text-slate-100">{job.title}</h3>
-                <p className="text-sm text-teal-300/90">{job.company}</p>
-                <p className="text-xs text-slate-500 mb-3">{job.period}</p>
-                <ul className="space-y-1.5">
-                  {job.bullets.map((b) => (
-                    <li key={b} className="text-sm text-slate-400 leading-relaxed">
-                      <span className="text-teal-300/70 mr-2">▸</span>
-                      {b}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              <Reveal key={job.title + job.period}>
+                <div className="relative">
+                  <span className="absolute -left-[31px] md:-left-[39px] top-1.5 h-3 w-3 rounded-full bg-teal-400 shadow-[0_0_12px_rgba(63,214,194,0.8)]" />
+                  <h3 className="font-semibold text-slate-100">{job.title}</h3>
+                  <p className="text-sm text-teal-300/90">{job.company}</p>
+                  <p className="text-xs text-slate-500 mb-3">{job.period}</p>
+                  <ul className="space-y-1.5">
+                    {job.bullets.map((b) => (
+                      <li key={b} className="text-sm text-slate-400 leading-relaxed">
+                        <span className="text-teal-300/70 mr-2">▸</span>
+                        {b}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </Reveal>
             ))}
           </div>
         </section>
 
-        {/* Building now */}
+        {/* Projects */}
         <section id="building" className="pb-20 scroll-mt-24">
-          <SectionTitle>{t.building.heading}</SectionTitle>
-          <p className="text-slate-400 mb-6 -mt-2">{t.building.sub}</p>
+          <Reveal>
+            <SectionTitle>{t.building.heading}</SectionTitle>
+            <p className="text-slate-400 mb-6 -mt-2">{t.building.sub}</p>
+          </Reveal>
           <div className="grid md:grid-cols-3 gap-5">
-            {t.building.items.map((p) => (
-              <div key={p.name} className="rounded-2xl bg-[#0c1626] border border-[#1c2b3f] p-6 flex flex-col">
-                <span className="self-start text-[11px] font-mono px-2.5 py-1 rounded-full mb-3 bg-teal-400/15 text-teal-300 border border-teal-400/30">
-                  ✓ {p.status}
-                </span>
-                <h3 className="font-semibold text-slate-100 mb-2">
-                  <a href={p.href} target="_blank" rel="noopener noreferrer" className="hover:text-teal-300 transition-colors underline decoration-[#2a3d59] underline-offset-4">
-                    {p.name}
-                  </a>
-                </h3>
-                <p className="text-sm text-slate-400 leading-relaxed flex-1">{p.desc}</p>
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {p.tags.map((tag) => (
-                    <span key={tag} className="text-[11px] font-mono px-2 py-0.5 rounded bg-[#0e1b2e] border border-[#22334d] text-slate-400">
-                      {tag}
+            {t.building.items.map((p, index) => (
+              <Reveal key={p.name} delay={index * 0.08}>
+                <SpotlightCard className="p-6 h-full">
+                  <div className="flex flex-col h-full">
+                    <span className="self-start text-[11px] font-mono px-2.5 py-1 rounded-full mb-3 bg-teal-400/15 text-teal-300 border border-teal-400/30">
+                      ✓ {p.status}
                     </span>
-                  ))}
-                </div>
-              </div>
+                    <h3 className="font-semibold text-slate-100 mb-2">
+                      <a href={p.href} target="_blank" rel="noopener noreferrer" className="hover:text-teal-300 transition-colors underline decoration-[#2a3d59] underline-offset-4">
+                        {p.name}
+                      </a>
+                    </h3>
+                    <p className="text-sm text-slate-400 leading-relaxed flex-1">{p.desc}</p>
+                    <div className="mt-4 flex flex-wrap gap-2">
+                      {p.tags.map((tag) => (
+                        <span key={tag} className="text-[11px] font-mono px-2 py-0.5 rounded bg-[#0e1b2e] border border-[#22334d] text-slate-400">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </SpotlightCard>
+              </Reveal>
             ))}
           </div>
-          <a href={LINKS.github} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 mt-6 text-sm text-teal-300 hover:underline">
-            <FaGithub /> {t.building.follow} →
-          </a>
+          <Reveal>
+            <a href={LINKS.github} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 mt-6 text-sm text-teal-300 hover:underline">
+              <FaGithub /> {t.building.follow} →
+            </a>
+          </Reveal>
         </section>
 
         {/* Certifications */}
         <section id="certs" className="pb-20 scroll-mt-24">
-          <SectionTitle>{t.certs.heading}</SectionTitle>
-          <ul className="grid md:grid-cols-2 gap-x-8 gap-y-2">
-            {t.certs.items.map((c) => (
-              <li key={c} className="text-sm text-slate-300">
-                <span className="text-teal-300/70 mr-2">✓</span>
-                {c}
-              </li>
-            ))}
-          </ul>
+          <Reveal>
+            <SectionTitle>{t.certs.heading}</SectionTitle>
+          </Reveal>
+          <Reveal>
+            <ul className="grid md:grid-cols-2 gap-x-8 gap-y-2">
+              {t.certs.items.map((c) => (
+                <li key={c} className="text-sm text-slate-300">
+                  <span className="text-teal-300/70 mr-2">✓</span>
+                  {c}
+                </li>
+              ))}
+            </ul>
+          </Reveal>
         </section>
 
         {/* About */}
         <section className="pb-20">
-          <SectionTitle>{t.about.heading}</SectionTitle>
-          <div className="flex flex-col md:flex-row gap-8 items-start">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/images/yoPelinegro.jpeg" alt="Alejandro Guerra" className="w-40 h-40 md:w-48 md:h-48 rounded-2xl object-cover border border-[#1c2b3f]" />
-            <div>
-              <p className="max-w-3xl text-slate-300/90 leading-relaxed">{t.about.body}</p>
-              <p className="mt-4 text-sm font-mono text-slate-400">{t.about.langs}</p>
+          <Reveal>
+            <SectionTitle>{t.about.heading}</SectionTitle>
+          </Reveal>
+          <Reveal>
+            <div className="flex flex-col md:flex-row gap-8 items-start">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/images/yoPelinegro.jpeg" alt="Alejandro Guerra" className="w-40 h-40 md:w-48 md:h-48 rounded-2xl object-cover border border-[#1c2b3f]" />
+              <div>
+                <p className="max-w-3xl text-slate-300/90 leading-relaxed">{t.about.body}</p>
+                <p className="mt-4 text-sm font-mono text-slate-400">{t.about.langs}</p>
+              </div>
             </div>
-          </div>
+          </Reveal>
         </section>
 
         {/* Contact */}
         <section id="contact" className="pb-24 scroll-mt-24">
-          <div className="rounded-2xl bg-gradient-to-br from-[#0c1626] to-[#0d2130] border border-[#1c2b3f] p-8 md:p-12 text-center">
-            <h2 className="text-2xl md:text-3xl font-bold text-slate-50 mb-3">{t.contact.heading}</h2>
-            <p className="text-slate-400 mb-6">{t.contact.body}</p>
-            <div className="flex flex-wrap justify-center gap-3">
-              <a href={LINKS.email} className="px-5 py-2.5 rounded-xl bg-teal-400 text-[#062220] font-semibold hover:bg-teal-300 transition-colors flex items-center gap-2">
-                <FaEnvelope /> {t.contact.email}
-              </a>
-              <a href={LINKS.linkedin} target="_blank" rel="noopener noreferrer" className="px-5 py-2.5 rounded-xl border border-[#2a3d59] hover:border-teal-400/60 transition-colors flex items-center gap-2">
-                <FaLinkedin /> LinkedIn
-              </a>
-              <a href={LINKS.github} target="_blank" rel="noopener noreferrer" className="px-5 py-2.5 rounded-xl border border-[#2a3d59] hover:border-teal-400/60 transition-colors flex items-center gap-2">
-                <FaGithub /> GitHub
-              </a>
+          <Reveal>
+            <div className="rounded-2xl bg-gradient-to-br from-[#0c1626] to-[#0d2130] border border-[#1c2b3f] p-8 md:p-12 text-center">
+              <h2 className="text-2xl md:text-3xl font-bold text-slate-50 mb-3">{t.contact.heading}</h2>
+              <p className="text-slate-400 mb-6">{t.contact.body}</p>
+              <div className="flex flex-wrap justify-center gap-3">
+                <a href={LINKS.email} className="px-5 py-2.5 rounded-xl bg-teal-400 text-[#062220] font-semibold hover:bg-teal-300 transition-colors flex items-center gap-2">
+                  <FaEnvelope /> {t.contact.email}
+                </a>
+                <a href={LINKS.linkedin} target="_blank" rel="noopener noreferrer" className="px-5 py-2.5 rounded-xl border border-[#2a3d59] hover:border-teal-400/60 transition-colors flex items-center gap-2">
+                  <FaLinkedin /> LinkedIn
+                </a>
+                <a href={LINKS.github} target="_blank" rel="noopener noreferrer" className="px-5 py-2.5 rounded-xl border border-[#2a3d59] hover:border-teal-400/60 transition-colors flex items-center gap-2">
+                  <FaGithub /> GitHub
+                </a>
+              </div>
             </div>
-          </div>
+          </Reveal>
         </section>
       </main>
 
-      <footer className="border-t border-[#16233a] py-8 text-center text-xs text-slate-500 font-mono">
+      <footer className="relative z-10 border-t border-[#16233a] py-8 text-center text-xs text-slate-500 font-mono">
         © 2026 Alejandro Guerra — {t.footer}
       </footer>
     </div>
