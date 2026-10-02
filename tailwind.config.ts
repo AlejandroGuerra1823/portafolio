@@ -1,17 +1,12 @@
 import type { Config } from "tailwindcss";
-import {nextui} from "@nextui-org/react"
-
-// const {nextui} = require("@nextui-org/react");
 
 export default {
-  content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-    "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ["./src/app/**/*.{js,ts,jsx,tsx,mdx}"],
+  // hover: utilities only where a real pointer exists — otherwise the first
+  // tap on a touch screen leaves hover styles stuck
+  future: { hoverOnlyWhenSupported: true },
   theme: {
     extend: {},
-  },darkMode: "class",
-  plugins: [nextui()],
+  },
+  plugins: [],
 } satisfies Config;

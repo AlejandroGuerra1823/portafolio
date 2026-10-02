@@ -1,0 +1,139 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-02T00:00:00Z",
+  "title": "Design System: 1% de Desorden",
+  "extensions": {
+    "colorMeta": {
+      "paper": { "role": "neutral", "displayName": "Technical Paper", "canonical": "#faf7f0", "tonalRamp": ["oklch(15% 0.01 90)", "oklch(30% 0.012 90)", "oklch(45% 0.014 90)", "oklch(60% 0.016 90)", "oklch(75% 0.018 90)", "oklch(86% 0.02 90)", "oklch(93% 0.015 90)", "oklch(97.5% 0.012 90)"] },
+      "ink": { "role": "neutral", "displayName": "Ink", "canonical": "#1c1c1c", "tonalRamp": ["oklch(15% 0.004 80)", "oklch(22% 0.004 80)", "oklch(32% 0.005 80)", "oklch(45% 0.006 80)", "oklch(58% 0.006 80)", "oklch(72% 0.006 80)", "oklch(85% 0.005 80)", "oklch(95% 0.004 80)"] },
+      "ink-soft": { "role": "neutral", "displayName": "Soft Ink (warm, not gray)", "canonical": "#5c564a", "tonalRamp": ["oklch(15% 0.018 85)", "oklch(25% 0.02 85)", "oklch(35% 0.022 85)", "oklch(43% 0.022 85)", "oklch(55% 0.022 85)", "oklch(70% 0.02 85)", "oklch(85% 0.018 85)", "oklch(95% 0.012 85)"] },
+      "pen": { "role": "primary", "displayName": "Plotter Pen", "canonical": "#2038b0", "tonalRamp": ["oklch(15% 0.1 265)", "oklch(25% 0.15 265)", "oklch(35% 0.18 265)", "oklch(42% 0.19 265)", "oklch(55% 0.17 265)", "oklch(70% 0.12 265)", "oklch(85% 0.06 265)", "oklch(95% 0.02 265)"] },
+      "pen-deep": { "role": "primary", "displayName": "Pen Pressed", "canonical": "#192c8f", "tonalRamp": ["oklch(15% 0.1 266)", "oklch(22% 0.14 266)", "oklch(30% 0.17 266)", "oklch(38% 0.18 266)", "oklch(50% 0.16 266)", "oklch(65% 0.12 266)", "oklch(80% 0.07 266)", "oklch(93% 0.03 266)"] },
+      "signal": { "role": "secondary", "displayName": "Signal Red (semantic: detected)", "canonical": "#c62e2e", "tonalRamp": ["oklch(15% 0.07 25)", "oklch(25% 0.11 25)", "oklch(35% 0.14 25)", "oklch(45% 0.17 25)", "oklch(53% 0.19 25)", "oklch(68% 0.14 25)", "oklch(82% 0.08 25)", "oklch(94% 0.03 25)"] },
+      "rule": { "role": "neutral", "displayName": "Ruled Line", "canonical": "#d9d3c2", "tonalRamp": ["oklch(15% 0.015 95)", "oklch(28% 0.018 95)", "oklch(42% 0.02 95)", "oklch(56% 0.023 95)", "oklch(70% 0.025 95)", "oklch(80% 0.026 95)", "oklch(86% 0.025 95)", "oklch(95% 0.015 95)"] },
+      "line": { "role": "neutral", "displayName": "Panel Stroke", "canonical": "rgba(28, 28, 28, 0.3)", "tonalRamp": ["rgba(28,28,28,0.9)", "rgba(28,28,28,0.75)", "rgba(28,28,28,0.6)", "rgba(28,28,28,0.45)", "rgba(28,28,28,0.3)", "rgba(28,28,28,0.2)", "rgba(28,28,28,0.12)", "rgba(28,28,28,0.06)"] },
+      "blueprint-paper": { "role": "tertiary", "displayName": "Blueprint Ground", "canonical": "#1c2f80", "tonalRamp": ["oklch(15% 0.09 268)", "oklch(24% 0.12 268)", "oklch(32% 0.14 268)", "oklch(42% 0.15 268)", "oklch(54% 0.14 268)", "oklch(68% 0.11 268)", "oklch(82% 0.06 268)", "oklch(94% 0.02 268)"] },
+      "blueprint-ink": { "role": "tertiary", "displayName": "Blueprint Paper-White Pen", "canonical": "#f6f3e9", "tonalRamp": ["oklch(15% 0.01 95)", "oklch(30% 0.012 95)", "oklch(45% 0.014 95)", "oklch(60% 0.015 95)", "oklch(74% 0.016 95)", "oklch(86% 0.016 95)", "oklch(93% 0.015 95)", "oklch(96.5% 0.015 95)"] },
+      "blueprint-signal": { "role": "tertiary", "displayName": "Blueprint Signal", "canonical": "#ff8273", "tonalRamp": ["oklch(20% 0.08 28)", "oklch(32% 0.12 28)", "oklch(44% 0.15 28)", "oklch(56% 0.17 28)", "oklch(68% 0.17 28)", "oklch(76% 0.15 28)", "oklch(86% 0.09 28)", "oklch(95% 0.03 28)"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Plotted Display", "purpose": "Hershey single-stroke SVG lettering (plotted-glyphs.json via PlottedText), stroke 1.3-1.6 round-capped. Section names and the hero mark only; never an HTML heading set in a display webfont." },
+      "body": { "displayName": "Body", "purpose": "Atkinson Hyperlegible 400/700; prose at 15-16px leading-relaxed, max 62-72ch." },
+      "label": { "displayName": "Label / Annotation", "purpose": "Martian Mono 400, 10-12px, tracking 0.04-0.08em, uppercase for headers, ticks, buttons; 10px .fig-label inside SVG figures." },
+      "readout": { "displayName": "Metric Readout", "purpose": "Martian Mono 600 at 20-24px, tabular-nums, pen blue. Headline metric values in the ficha and eval tables." }
+    },
+    "shadows": [
+      { "name": "stamp", "value": "0 2px 10px rgba(32, 56, 176, 0.22)", "purpose": "Primary stamp button only — pen-tinted settle onto the paper." },
+      { "name": "toast-stamp", "value": "0 3px 14px rgba(28, 25, 18, 0.18)", "purpose": "The plot-toast; the only other shadow in the system." }
+    ],
+    "motion": [
+      { "name": "ease-out", "value": "cubic-bezier(0.23, 1, 0.32, 1)", "purpose": "UI state transitions (buttons, slider thumb, lab readout settle), 160-180ms." },
+      { "name": "ease-in-out", "value": "cubic-bezier(0.77, 0, 0.175, 1)", "purpose": "Reserved paired easing token in :root." },
+      { "name": "plot-draw", "value": "stroke-dashoffset 1->0, linear, 0.3s (glyphs, 55ms/char stagger) / 0.35s (field outer rings) / 0.7s (figures via .is-inked)", "purpose": "The pen re-trace: one-time, linear (the speed of a real pen), toward the SSR-final state; removed under prefers-reduced-motion." },
+      { "name": "axis-draw", "value": "scaleY 0->1, linear, 1.6s", "purpose": "The hero's wayfinding pen line draws once on arrival." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Stamp Button (Primary)",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Pen-blue stamped action — Download CV / Contact primaries.",
+      "html": "<a class=\"ds-stamp-btn\" href=\"#\"><svg width=\"15\" height=\"15\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4\"/><polyline points=\"7 10 12 15 17 10\"/><line x1=\"12\" y1=\"15\" x2=\"12\" y2=\"3\"/></svg>Download resume</a>",
+      "css": ".ds-stamp-btn { display: inline-flex; align-items: center; gap: 0.55rem; padding: 0.68rem 1.15rem; font-family: var(--font-mono), ui-monospace, monospace; font-size: 0.8rem; letter-spacing: 0.04em; text-transform: uppercase; text-decoration: none; border: 1.5px solid var(--pen-deep, #192c8f); background: var(--pen, #2038b0); color: #faf7f0; border-radius: 2px; box-shadow: 0 2px 10px rgba(32, 56, 176, 0.22); cursor: pointer; user-select: none; transition: transform 160ms cubic-bezier(0.23, 1, 0.32, 1), background-color 160ms cubic-bezier(0.23, 1, 0.32, 1); } .ds-stamp-btn:hover { background: var(--pen-deep, #192c8f); } .ds-stamp-btn:active { transform: scale(0.97); } .ds-stamp-btn:focus-visible { outline: 2px solid var(--pen, #2038b0); outline-offset: 2px; border-radius: 1px; }"
+    },
+    {
+      "name": "Stamp Button (Ghost)",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Outlined secondary stamp — GitHub / LinkedIn / Contact secondaries.",
+      "html": "<a class=\"ds-stamp-ghost\" href=\"#\">GitHub<svg width=\"15\" height=\"15\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><line x1=\"7\" y1=\"17\" x2=\"17\" y2=\"7\"/><polyline points=\"7 7 17 7 17 17\"/></svg></a>",
+      "css": ".ds-stamp-ghost { display: inline-flex; align-items: center; gap: 0.55rem; padding: 0.68rem 1.15rem; font-family: var(--font-mono), ui-monospace, monospace; font-size: 0.8rem; letter-spacing: 0.04em; text-transform: uppercase; text-decoration: none; border: 1.5px solid var(--line, rgba(28,28,28,0.3)); background: transparent; color: var(--ink, #1c1c1c); border-radius: 2px; cursor: pointer; user-select: none; transition: transform 160ms cubic-bezier(0.23, 1, 0.32, 1), color 160ms cubic-bezier(0.23, 1, 0.32, 1), border-color 160ms cubic-bezier(0.23, 1, 0.32, 1); } .ds-stamp-ghost:hover { border-color: var(--pen, #2038b0); color: var(--pen, #2038b0); } .ds-stamp-ghost:active { transform: scale(0.97); } .ds-stamp-ghost:focus-visible { outline: 2px solid var(--pen, #2038b0); outline-offset: 2px; border-radius: 1px; }"
+    },
+    {
+      "name": "Plot Panel (Metric Ficha)",
+      "kind": "card",
+      "refersTo": "plot-panel",
+      "description": "Hairline-bordered paper panel with a mono label header and ruled-gap metric cells; metrics are printed, tabular, and source-linked.",
+      "html": "<div class=\"ds-plot-panel\"><p class=\"ds-panel-head\">Published evaluation results</p><dl class=\"ds-metric-grid\"><div class=\"ds-metric\"><dt>F1 · anomaly detection</dt><dd><span class=\"ds-metric-v\">0.89</span><a href=\"#\" class=\"ds-metric-src\">financial-analysis-agent / RESULTS.md</a></dd></div><div class=\"ds-metric\"><dt>Recall@1 · retrieval</dt><dd><span class=\"ds-metric-v\">90%</span><a href=\"#\" class=\"ds-metric-src\">financial-docs-rag / RETRIEVAL_RESULTS.md</a></dd></div></dl></div>",
+      "css": ".ds-plot-panel { border: 1px solid var(--line, rgba(28,28,28,0.3)); background: var(--paper, #faf7f0); border-radius: 2px; max-width: 560px; } .ds-panel-head { margin: 0; border-bottom: 1px solid var(--rule, #d9d3c2); padding: 8px 16px; font-family: var(--font-mono), ui-monospace, monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-soft, #5c564a); } .ds-metric-grid { margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--rule, #d9d3c2); } .ds-metric { background: var(--paper, #faf7f0); padding: 12px 16px; } .ds-metric dt { font-family: var(--font-mono), ui-monospace, monospace; font-size: 11px; color: var(--ink-soft, #5c564a); } .ds-metric dd { margin: 4px 0 0; } .ds-metric-v { display: block; font-family: var(--font-mono), ui-monospace, monospace; font-variant-numeric: tabular-nums; font-size: 1.5rem; font-weight: 600; color: var(--pen, #2038b0); } .ds-metric-src { display: block; margin-top: 4px; font-family: var(--font-mono), ui-monospace, monospace; font-size: 10px; color: var(--ink-soft, #5c564a); text-decoration: underline; text-decoration-color: var(--rule, #d9d3c2); text-underline-offset: 2px; } .ds-metric-src:hover { color: var(--pen, #2038b0); text-decoration-color: var(--pen, #2038b0); }"
+    },
+    {
+      "name": "Job Header Nav",
+      "kind": "nav",
+      "description": "Sticky plot-job header strip: plot ID, uppercase mono links, CV chip, EN|ES toggle as a job parameter.",
+      "html": "<header class=\"ds-jobhead\"><a href=\"#\" class=\"ds-jobhead-id\">PLOT AG-2026</a><span class=\"ds-jobhead-meta\">· ALEJANDRO GUERRA · AI ENGINEER · MEDELLÍN, CO</span><nav class=\"ds-jobhead-nav\"><a href=\"#\">Dilo</a><a href=\"#\">Projects</a><a href=\"#\">Contact</a><a href=\"#\" class=\"ds-jobhead-cv\">Resume</a><button class=\"ds-jobhead-lang\" type=\"button\">EN|es</button></nav></header>",
+      "css": ".ds-jobhead { display: flex; align-items: center; gap: 16px; height: 56px; padding: 0 20px; background: var(--paper, #faf7f0); border-bottom: 1px solid var(--line, rgba(28,28,28,0.3)); font-family: var(--font-mono), ui-monospace, monospace; font-size: 11px; letter-spacing: 0.06em; } .ds-jobhead-id { font-weight: 600; color: var(--ink, #1c1c1c); text-decoration: none; white-space: nowrap; } .ds-jobhead-meta { color: var(--ink-soft, #5c564a); } .ds-jobhead-nav { margin-left: auto; display: flex; align-items: center; gap: 16px; } .ds-jobhead-nav a { color: var(--ink-soft, #5c564a); text-transform: uppercase; text-decoration: none; white-space: nowrap; transition: color 160ms cubic-bezier(0.23, 1, 0.32, 1); } .ds-jobhead-nav a:hover { color: var(--pen, #2038b0); } .ds-jobhead-cv { border: 1px solid var(--pen, #2038b0); padding: 4px 8px; color: var(--pen, #2038b0) !important; } .ds-jobhead-cv:hover { background: var(--pen, #2038b0); color: #faf7f0 !important; } .ds-jobhead-lang { border: 1px solid var(--line, rgba(28,28,28,0.3)); background: transparent; padding: 4px 8px; font: inherit; text-transform: uppercase; color: var(--ink, #1c1c1c); cursor: pointer; transition: color 160ms, border-color 160ms; } .ds-jobhead-lang:hover { border-color: var(--pen, #2038b0); color: var(--pen, #2038b0); } .ds-jobhead-lang:focus-visible, .ds-jobhead-nav a:focus-visible { outline: 2px solid var(--pen, #2038b0); outline-offset: 2px; border-radius: 1px; }"
+    },
+    {
+      "name": "Disorder Slider",
+      "kind": "input",
+      "description": "The system's only input: a discrete range slider drawn as a 1.5px track with a square pen-bordered thumb inside a 28px touch target.",
+      "html": "<div class=\"ds-lab-row\"><label for=\"ds-disorder\" class=\"ds-lab-label\">disorder</label><input id=\"ds-disorder\" class=\"ds-disorder-slider\" type=\"range\" min=\"0\" max=\"3\" step=\"1\" value=\"1\" /><span class=\"ds-lab-value\">1%</span></div>",
+      "css": ".ds-lab-row { display: flex; align-items: center; gap: 24px; padding: 12px 16px; border: 1px solid var(--line, rgba(28,28,28,0.3)); background: var(--paper, #faf7f0); border-radius: 2px; } .ds-lab-label { font-family: var(--font-mono), ui-monospace, monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-soft, #5c564a); } .ds-lab-value { font-family: var(--font-mono), ui-monospace, monospace; font-size: 0.875rem; font-variant-numeric: tabular-nums; color: var(--pen, #2038b0); } .ds-disorder-slider { appearance: none; -webkit-appearance: none; width: 11rem; height: 28px; background: transparent; border-radius: 0; cursor: pointer; } .ds-disorder-slider::-webkit-slider-runnable-track { height: 1.5px; background: var(--line, rgba(28,28,28,0.3)); } .ds-disorder-slider::-webkit-slider-thumb { appearance: none; -webkit-appearance: none; width: 14px; height: 14px; margin-top: -6.25px; border: 1.5px solid var(--pen, #2038b0); background: var(--paper, #faf7f0); border-radius: 2px; transition: transform 160ms cubic-bezier(0.23, 1, 0.32, 1); } .ds-disorder-slider:active::-webkit-slider-thumb { transform: scale(1.15); } .ds-disorder-slider::-moz-range-track { height: 1.5px; background: var(--line, rgba(28,28,28,0.3)); } .ds-disorder-slider::-moz-range-thumb { width: 14px; height: 14px; border: 1.5px solid var(--pen, #2038b0); background: var(--paper, #faf7f0); border-radius: 2px; } .ds-disorder-slider:focus-visible { outline: 2px solid var(--pen, #2038b0); outline-offset: 2px; }"
+    },
+    {
+      "name": "Plot Toast",
+      "kind": "custom",
+      "refersTo": "plot-toast",
+      "description": "Stamped confirmation toast (sonner toast.custom), e.g. after copying the email.",
+      "html": "<div class=\"ds-plot-toast\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><polyline points=\"20 6 9 17 4 12\"/></svg>email copied</div>",
+      "css": ".ds-plot-toast { display: inline-flex; align-items: center; gap: 8px; background: var(--paper, #faf7f0); border: 1.5px solid var(--ink, #1c1c1c); color: var(--pen, #2038b0); padding: 0.6rem 1rem; font-family: var(--font-mono), ui-monospace, monospace; font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; border-radius: 2px; box-shadow: 0 3px 14px rgba(28, 25, 18, 0.18); }"
+    },
+    {
+      "name": "Leader Annotation + Axis Tick",
+      "kind": "custom",
+      "description": "The sheet's annotation grammar: a 1rem pen leader dash before captions, and the section coordinate tick with its pen dash.",
+      "html": "<div><p class=\"ds-leader\">fig. 01 — after Vera Molnár, «(Dés)Ordres»: seeded 5% disorder. Red marks what the system flags.</p><span class=\"ds-axis-tick\">№ 02 · blueprint</span></div>",
+      "css": ".ds-leader { position: relative; padding-left: 1.4rem; max-width: 42ch; margin: 0 0 20px; font-family: var(--font-mono), ui-monospace, monospace; font-size: 11px; line-height: 1.6; color: var(--ink-soft, #5c564a); } .ds-leader::before { content: \"\"; position: absolute; left: 0; top: 0.62em; width: 1rem; height: 1.5px; background: var(--pen, #2038b0); } .ds-axis-tick { font-family: var(--font-mono), ui-monospace, monospace; font-size: 11px; letter-spacing: 0.08em; color: var(--ink-soft, #5c564a); white-space: nowrap; } .ds-axis-tick::before { content: \"\"; display: inline-block; width: 1.4rem; height: 1.5px; background: var(--pen, #2038b0); vertical-align: middle; margin-right: 0.6rem; }"
+    },
+    {
+      "name": "Molnár Cell (flagged vs plotted)",
+      "kind": "custom",
+      "description": "The world's recognizable mark: concentric stroked squares; a perturbed cell beyond tolerance switches to signal red at stroke 1.4.",
+      "html": "<svg viewBox=\"0 0 52 26\" width=\"104\" height=\"52\" aria-hidden=\"true\" class=\"ds-mf\"><g class=\"ds-mf-pen\"><path d=\"M4,4 h18 v18 h-18 Z\" /><path d=\"M6.5,6.5 h13 v13 h-13 Z\" /><path d=\"M9,9 h8 v8 h-8 Z\" /><path d=\"M11.5,11.5 h3 v3 h-3 Z\" /></g><g class=\"ds-mf-flag\"><path d=\"M30,4 h18 v18 h-18 Z\" /><path d=\"M33.4,6.1 h13 v13 h-13 Z\" transform=\"rotate(7 40 13)\" /><path d=\"M36.8,8.2 h8 v8 h-8 Z\" transform=\"rotate(14 41 13)\" /><path d=\"M40.2,10.3 h3 v3 h-3 Z\" transform=\"rotate(21 42 13)\" /></g></svg>",
+      "css": ".ds-mf { display: block; overflow: visible; } .ds-mf path { fill: none; stroke: currentColor; vector-effect: non-scaling-stroke; } .ds-mf-pen { color: var(--pen, #2038b0); } .ds-mf-pen path { stroke-width: 1; } .ds-mf-flag { color: var(--signal, #c62e2e); } .ds-mf-flag path { stroke-width: 1.4; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "1% de Desorden",
+    "overview": "The page is a single sheet of warm technical paper on which a plotter executes a job (PLOT AG-2026). Everything on it behaves like plotted output: single-stroke display lettering, hairline figures stroked in plotter-pen blue, registration marks in the corners, mono-face labels and readouts, leader-line annotations, section coordinates as axis ticks, and one unbroken pen line travelling down the left edge of the whole document. Content and instrument are the same thesis: directed disorder — the engineer doses the machine's freedom, and signal red appears only where the system detects an anomaly.\n\nThe world refuses both the dark-neon dev-terminal and the minimal white CV. It is dense with annotation but never decorated: every figure is labeled and traceable to a source file, every headline metric is printed in the server-rendered HTML at first paint, and motion only re-traces what is already true. One passage drowns: the Dilo case study is a blueprint lámina where the token set inverts (deep blueprint blue ground, paper-white pen).",
+    "keyCharacteristics": [
+      "Warm paper ground (#faf7f0) with hairline stroked figures; nothing is filled except button grounds and data-point dots",
+      "Plotter pen blue (#2038b0) owns every drawn figure, rule, metric readout, and the travelling axis line",
+      "Signal red (#c62e2e) is semantics only — it marks what the system detected, never decoration",
+      "Exactly one inverted blueprint section (.blueprint re-scopes the custom properties)",
+      "SSR serves the final plotted state; animation is a one-time linear pen re-trace toward it",
+      "Bilingual EN/ES with ES as the layout base case; light-only (color-scheme: only light)"
+    ],
+    "rules": [
+      { "name": "The Red Means Detected Rule", "body": "Signal red appears only on what the system flags (anomaly cells, flagged counts). Red is never decoration, emphasis, or an error style invented for layout.", "section": "colors" },
+      { "name": "The One Blueprint Rule", "body": "Exactly one section on the page carries .blueprint. The inversion is an event, not a theme.", "section": "colors" },
+      { "name": "The Warm Neutral Rule", "body": "There is no gray. Secondary text and marks are warm ink-soft (#5c564a) tinted from the paper; dividers are the paper's own ruled lines (#d9d3c2).", "section": "colors" },
+      { "name": "The Drawn Display Rule", "body": "Display type is single-stroke SVG via PlottedText, period. No HTML heading is ever set in a display webfont; h1/h2 wrap the SVG plus screen-reader text.", "section": "typography" },
+      { "name": "The Tabular Numbers Rule", "body": "Every numeric readout (metrics, periods, lab counters) sets tabular-nums.", "section": "typography" },
+      { "name": "The Flat Sheet Rule", "body": "No new shadows. Panels, cards, images, and the blueprint sit on the paper with 1px strokes; only the two stamp shadows above exist.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do render every drawn element as stroked SVG with vector-effect: non-scaling-stroke, stroke 1–1.6px, round caps, currentColor or var(--pen).",
+      "Do write components against the custom properties (--paper, --ink, --pen, --signal, --rule, --line) so they survive the .blueprint inversion unchanged.",
+      "Do serve the final plotted state from the server; add motion only as a one-time linear re-trace toward it (The SSR-Final-State Rule), removed under reduced motion.",
+      "Do print every metric in the HTML, in Martian Mono tabular figures, with a labeled source link (repo / RESULTS.md path) — a figure may echo a number, never solely host it.",
+      "Do annotate figures with .leader leader-line captions and mono .fig-labels; give every section an axis-tick coordinate.",
+      "Do gate hover styles behind (hover: hover) and (pointer: fine), keep uppercase labels in Martian Mono at 10–12px, and localize every string EN/ES (ES is the layout base case)."
+    ],
+    "donts": [
+      "Don't use signal red for anything the system did not detect — no red CTAs, errors-as-decoration, or accents.",
+      "Don't add a second blueprint/inverted section, a dark mode, or any ground other than the paper tokens.",
+      "Don't set display type as HTML text in a display font — plotted headings come only from PlottedText + sr-only text.",
+      "Don't scroll-scrub, loop, or reverse draw animations — a plotter never un-draws — and don't animate the metrics ficha or CTAs (they never join the theater).",
+      "Don't introduce gray neutrals, radii above 2px, new shadows, filled illustration shapes, gradients (beyond the .scroll-fade paper fade), monetary symbols near metrics, or deviceorientation input.",
+      "Don't fake field counts — Molnár stats are computed from the same seeded RNG that renders the cells (molnarStats keeps call parity with the renderer)."
+    ]
+  }
+}

@@ -2,57 +2,387 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-  font-family: 'Montserrat';
-  src: url(/fonts/Montserrat-Variable.ttf);
+/* ———————————————————————————————————————————————————————————————
+   World tokens — technical paper, ink, plotter pen, signal red.
+   Red is semantics (what the system detects), never decoration.
+   ——————————————————————————————————————————————————————————————— */
+:root {
+  --paper: #faf7f0;
+  --paper-deep: #f2eee2;
+  --ink: #1c1c1c;
+  --ink-soft: #5c564a; /* tinted from the paper's warmth, not gray */
+  --pen: #2038b0;
+  --pen-deep: #192c8f;
+  --signal: #c62e2e;
+  --rule: #d9d3c2; /* pale ruled lines of the sheet */
+  --line: rgba(28, 28, 28, 0.3); /* panel strokes */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+/* The one Drenched passage: the Dilo blueprint lámina. */
+.blueprint {
+  --paper: #1c2f80;
+  --paper-deep: #182a74;
+  --ink: #f6f3e9;
+  --ink-soft: #b7c1ee; /* tinted from the blueprint hue */
+  --pen: #f6f3e9; /* on a blueprint, the pen draws in paper-white */
+  --pen-deep: #ffffff;
+  --signal: #ff8273;
+  --rule: #33479c;
+  --line: rgba(246, 243, 233, 0.4);
+  background: var(--paper);
+  color: var(--ink);
 }
 
 html {
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 :root {
-  --background: #070d18;
-  --foreground: #e6edf5;
+  color-scheme: only light; /* paper world — block Android force-dark repainting */
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: 'Montserrat', system-ui, sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body), "Atkinson Hyperlegible", system-ui, sans-serif;
+  -webkit-tap-highlight-color: transparent;
+  overflow-x: clip;
 }
 
-::-webkit-scrollbar {
-  width: 8px;
+a,
+button,
+input,
+summary {
+  touch-action: manipulation;
 }
 
-::-webkit-scrollbar-thumb {
-  background-color: #1c2b3f;
-  border-radius: 10px;
+/* tap-highlight is gone, so controls own their press feedback — and a long
+   press must never select a button label */
+button,
+.stamp-btn,
+header nav a {
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
 }
 
-::-webkit-scrollbar-track {
-  background-color: #0a1220;
+/* ———— Browser surfaces carry the design too ———— */
+::selection {
+  background: var(--pen);
+  color: #faf7f0;
+}
+.blueprint ::selection {
+  background: #f6f3e9;
+  color: #1c2f80;
+}
+:root {
+  caret-color: var(--pen);
+}
+:focus-visible {
+  outline: 2px solid var(--pen);
+  outline-offset: 2px;
+  border-radius: 1px;
+}
+/* custom scrollbars only where a mouse exists — styling them on Android
+   kills the overlay scrollbars of inner scroll containers */
+@media (hover: hover) and (pointer: fine) {
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--paper-deep);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(28, 28, 28, 0.3);
+    border: 2px solid var(--paper-deep);
+    border-radius: 2px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(28, 28, 28, 0.5);
+  }
 }
 
-/* --- futuristic backdrop ------------------------------------------------ */
-
-@keyframes aurora-drift {
-  0%   { transform: translate(0, 0) scale(1); }
-  50%  { transform: translate(60px, -40px) scale(1.15); }
-  100% { transform: translate(0, 0) scale(1); }
+.tabular {
+  font-variant-numeric: tabular-nums;
 }
 
-.aurora-blob {
-  position: fixed;
-  border-radius: 9999px;
-  filter: blur(90px);
-  opacity: 0.35;
-  pointer-events: none;
-  z-index: 0;
-  animation: aurora-drift 18s ease-in-out infinite;
+/* ———————————————————————————————————————————————————————————————
+   The pen. Base state is always fully drawn (SSR persuades at 0ms);
+   animation re-traces toward it — linear, the speed of a real pen.
+   ——————————————————————————————————————————————————————————————— */
+@keyframes plot-draw {
+  from {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 0;
+  }
+}
+
+.plot-draw path {
+  animation: plot-draw 0.3s linear both;
+}
+/* hero field: only the outer ring of each cell draws — 110 paths, not 440,
+   so the theater never fights hydration for the main thread */
+.mf-draw {
+  animation: plot-draw 0.35s linear both;
+}
+
+/* Below-the-fold figures ink themselves ONCE when they enter (IntersectionObserver
+   adds .is-inked). A plotter never un-draws, so no scroll-scrubbing. Without JS
+   the figure is simply printed. */
+.is-inked .fig-line {
+  animation: plot-draw 0.7s linear both;
+}
+
+/* The pen draws the wayfinding line down the hero on arrival. */
+@keyframes axis-draw {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+.axis-rule--draw {
+  transform-origin: top;
+  animation: axis-draw 1.6s linear both;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .aurora-blob { animation: none; }
+  html {
+    scroll-behavior: auto;
+  }
+  .plot-draw path,
+  .mf-draw,
+  .is-inked .fig-line,
+  .axis-rule--draw {
+    animation: none;
+  }
+}
+
+/* ———— Plotted lettering & figures ———— */
+.plotted {
+  display: block;
+  overflow: visible;
+}
+.fig-label {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 10px;
+  fill: var(--ink-soft);
+  letter-spacing: 0.02em;
+}
+.fig-label--strong {
+  fill: var(--ink);
+  font-weight: 600;
+}
+.fig-label--inherit {
+  fill: currentColor;
+}
+text.fig-label--inherit:not(.fig-label--strong) {
+  opacity: 0.8;
+}
+.mf-pen {
+  color: var(--pen);
+}
+.mf-flag {
+  color: var(--signal);
+}
+
+/* ———— Stamped controls ———— */
+.stamp-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.68rem 1.15rem;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border: 1.5px solid var(--ink);
+  background: var(--pen);
+  color: #faf7f0;
+  border-color: var(--pen-deep);
+  border-radius: 2px;
+  box-shadow: 0 2px 10px rgba(32, 56, 176, 0.22);
+  transition: transform 160ms var(--ease-out), background-color 160ms var(--ease-out), color 160ms var(--ease-out),
+    border-color 160ms var(--ease-out);
+}
+.stamp-btn:active {
+  transform: scale(0.97);
+}
+.stamp-btn--ghost {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--line);
+  box-shadow: none;
+}
+.blueprint .stamp-btn--ghost {
+  color: var(--ink);
+}
+@media (hover: hover) and (pointer: fine) {
+  .stamp-btn:hover {
+    background: var(--pen-deep);
+  }
+  .stamp-btn--ghost:hover {
+    background: transparent;
+    border-color: var(--pen);
+    color: var(--pen);
+  }
+  .blueprint .stamp-btn--ghost:hover {
+    border-color: var(--pen);
+    color: var(--pen-deep);
+  }
+}
+
+/* ———— Panels, rules, annotations ———— */
+.plot-panel {
+  border: 1px solid var(--line);
+  background: var(--paper);
+  border-radius: 2px;
+}
+.leader {
+  position: relative;
+  padding-left: 1.4rem;
+}
+.leader::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 1rem;
+  height: 1.5px;
+  background: var(--pen);
+}
+
+/* Section coordinate tick: part of the plot axis, inline with the heading. */
+.axis-tick {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--ink-soft);
+  white-space: nowrap;
+}
+.axis-tick::before {
+  content: "";
+  display: inline-block;
+  width: 1.4rem;
+  height: 1.5px;
+  background: var(--pen);
+  vertical-align: middle;
+  margin-right: 0.6rem;
+}
+.blueprint .axis-tick::before {
+  background: var(--pen);
+}
+
+/* ———— Range input (disorder slider) ————
+   28px touch target around a 1.5px drawn track; the slider owns its gesture
+   (touch-action: none) — it is narrow, the page scrolls fine outside it. */
+.disorder-slider {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 11rem;
+  max-width: 45vw;
+  height: 28px;
+  background: transparent;
+  border-radius: 0;
+  cursor: pointer;
+  touch-action: none;
+}
+.disorder-slider::-webkit-slider-runnable-track {
+  height: 1.5px;
+  background: var(--line);
+}
+.disorder-slider::-webkit-slider-thumb {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 14px;
+  height: 14px;
+  margin-top: -6.25px;
+  border: 1.5px solid var(--pen);
+  background: var(--paper);
+  border-radius: 2px;
+  transition: transform 160ms var(--ease-out);
+}
+.disorder-slider::-moz-range-track {
+  height: 1.5px;
+  background: var(--line);
+}
+.disorder-slider::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border: 1.5px solid var(--pen);
+  background: var(--paper);
+  border-radius: 2px;
+  transition: transform 160ms var(--ease-out);
+}
+.disorder-slider:active::-webkit-slider-thumb {
+  transform: scale(1.15);
+}
+.disorder-slider:active::-moz-range-thumb {
+  transform: scale(1.15);
+}
+
+/* ———— Toast: a plotted stamp ———— */
+.plot-toast {
+  background: var(--paper);
+  border: 1.5px solid var(--ink);
+  color: var(--pen);
+  padding: 0.6rem 1rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  box-shadow: 0 3px 14px rgba(28, 25, 18, 0.18);
+}
+
+/* ———— Horizontal scroll affordance: a fade on the outer wrapper (never on
+        the scroll container itself, where it would scroll along) ———— */
+.scroll-fade {
+  position: relative;
+}
+.scroll-fade::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 36px;
+  background: linear-gradient(to left, var(--paper), transparent);
+  pointer-events: none;
+}
+@media (min-width: 768px) {
+  .scroll-fade::after {
+    display: none;
+  }
+}
+
+/* ———— The unbroken pen line (per-section segments abut, so the line
+        never lifts; inside the blueprint the pen draws paper-white) ———— */
+.axis-rule {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 1.5px;
+  background: var(--pen);
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+/* ———— Registration marks (hero corners) ———— */
+.reg-mark {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  color: var(--ink-soft);
+  opacity: 0.7;
+  pointer-events: none;
 }
